@@ -15,8 +15,8 @@ export class CustomerServiceService implements OnInit {
   ngOnInit(): void {
   }
 
-  public all(): Observable<[]> {
-    return this.httpClient.get<[]>(this.expURL + 'filters');
+  public all(): Observable<CustomerModel[]> {
+    return this.httpClient.get<CustomerModel[]>(this.expURL + 'filters');
   }
 
   public save(customer: CustomerModel): Observable<any> {
