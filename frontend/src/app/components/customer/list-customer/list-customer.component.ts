@@ -1,50 +1,48 @@
-import { Component, OnInit } from '@angular/core';
-import { CustomerModel } from '../customer-model';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {  CustomerModel } from '../customer-model';
 import { CustomerServiceService } from '../customer-service.service';
 import { TokenService } from '../../login/token.service';
 import { Router } from '@angular/router';
-import { MatPaginator } from '@angular/material/paginator';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-    
-
+import { MatTableDataSource } from '@angular/material/table';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 @Component({
   selector: 'app-list-customer',
   templateUrl: './list-customer.component.html',
   styleUrls: ['./list-customer.component.css'],
 })
-  
-export class ListCustomerComponent implements OnInit{
-  customer:CustomerModel[] = [] 
-
-  dataSource = this.customer;
-  displayedColumns: string[] = ['lastName','firstName','dni', 'phone','email','birthdate','acciones'];
- constructor(private customerService:  CustomerServiceService , private tokenService: TokenService,private router:Router) { }
-  isLogued = false; 
-  ngOnInit(): void {
-    this.all();
-   if (this.tokenService.getToken()) {
-      this.isLogued =true;
+export class ListCustomerComponent implements OnInit , AfterViewInit{
+isLogued = false; 
+customer:CustomerModel[]=[];
+displayedColumns: string[] = ['lastName','firstName','dni','phone', 'email','birthdate','acciones'];
+dataSource = new  MatTableDataSource<CustomerModel>(this.customer);
+@ViewChild(MatPaginator)paginator!: MatPaginator;
+  constructor(private customerService: CustomerServiceService, private tokenService: TokenService, private router: Router) { }
+   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+ngOnInit(): void {
+     this.all();
+    if (this.tokenService.getToken()) {
+      this.isLogued = true;
     }
     else {
       this.isLogued = false;
-        this.router.navigate([''])
+      this.router.navigate([''])
     }
   }
-  ngAfterViewInit() {
- 
-  }
 public all(): void {
-  this.customerService.all().subscribe(data => { this.customer = data; })
-  console.log(this.customer)
+  this.customerService.all().subscribe(response=> {
+this.dataSource.data = response;
+ console.log(response)
+   })
+} 
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+
+  if (this.dataSource.paginator) {
+    this.dataSource.paginator.firstPage();
   }
-}
-function ViewChild(MatPaginator: any): (target: ListCustomerComponent, propertyKey: "paginator") => void {
-  throw new Error('Function not implemented.');
 }
 
+}
