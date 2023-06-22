@@ -15,11 +15,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
+ 
+    
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -32,12 +33,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    FormsModule,
+    
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTooltipModule,
   ], exports: [
-    CommonModule,
-    ReactiveFormsModule,
+  
+   
     LayoutModule,
     MatToolbarModule,
     MatInputModule,
@@ -50,9 +52,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatCardModule,
     MatMenuModule,
     MatFormFieldModule,
-    FormsModule,
+   
     MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatTooltipModule,
   ],
 })
 export class SharedModule { }
