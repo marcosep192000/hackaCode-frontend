@@ -1,24 +1,106 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+
+<h1 mat-dialog-title>
+Registrar Cliente
+<hr>
+</h1>
+<div mat-dialog-content class="content">
+  <div class="row">
+      <mat-form-field appearance="outline" class="size">
+        <mat-label>Nombre/s</mat-label>
+        <input matInput type="text" placeholder="Ingrese nombre">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="size">
+        <mat-label>Apellido/s</mat-label>
+        <input matInput type="text" placeholder="Ingrese nombre">
+      </mat-form-field>
+  </div>
+
+  <div class="row">
+      <mat-form-field hintLabel="Max 8 caracteres numericos" class="size" appearance="outline">
+        <mat-label>Dni </mat-label>
+        <input matInput #input maxlength="8" minlength="8" placeholder>
+        <mat-hint align="end">{{input.value.length}}/10</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="size" appearance="outline">
+        <mat-label>Numero de Telefono</mat-label>
+        <input matInput #input maxlength="8" minlength="8"
+          placeholder="Ex. Nougat">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>Incluir el codigo de area.</mat-hint>
+      </mat-form-field>
+  </div>
+
+   <div class="row">
+ <mat-form-field appearance="outline" >
+    <mat-label>Ingresa Mail</mat-label>
+    <input matInput placeholder=" marveland@hackaCode.com" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+   </div>
+   <div class="row">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput [matDatepicker]="picker">
+      <mat-hint>dia/mes/año</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+   </div>
+
+
+
+
 </div>
+<div mat-dialog-actions>
+  <button mat-button color="primary">Guardar</button>
+  <button mat-button>Salir</button>
+</div>
+
+<!-- <div class="container">
+
+  <h1 mat-dialog-title>Hi</h1>
+  
+  <div mat-dialog-content>
+    
+<form>
+  <mat-form-field >
+    <mat-label>Nombre/s</mat-label>
+    <input matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Apellido/s</mat-label>
+    <input matInput class="ancho">
+  </mat-form-field>
+
+  
+
+ 
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary">Enviar</button>
+  <button mat-raised-button>Cancelar</button>
+</mat-dialog-actions>
+</form>
+
+
+  </div>
+
+
+
+
+  <mat-dialog-content>
+    <div mat-dialog-title>
+      <h1> Registro de nuevo Cliente</h1>
+      <hr>
+      <h3>Todos los campos son obligatorios.</h3>
+    </div>
+  </mat-dialog-content>
+</div>
+
+
+
+-->

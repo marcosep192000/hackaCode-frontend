@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
@@ -15,12 +15,15 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTooltipModule} from '@angular/material/tooltip'; 
+   import {MatDialogContent, MatDialogModule, MatDialogTitle} from '@angular/material/dialog';
+   import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [],
   imports: [
  
-    
+  
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -33,10 +36,14 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
-    
+    MatDialogModule,
     MatSnackBarModule,
     MatPaginatorModule,
     MatTooltipModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+   
+
   ], exports: [
   
    
@@ -52,10 +59,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatCardModule,
     MatMenuModule,
     MatFormFieldModule,
-   
+    MatDialogModule,
     MatTableModule,
   MatPaginatorModule,
   MatTooltipModule,
+  MatDatepickerModule,
+  MatNativeDateModule
   ],
 })
 export class SharedModule { }
