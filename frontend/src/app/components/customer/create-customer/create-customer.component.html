@@ -1,62 +1,66 @@
-
 <h1 mat-dialog-title>
-Registrar Cliente
-<hr>
+  Registrar Cliente
+  <hr />
 </h1>
 <div mat-dialog-content class="content">
-  <div class="row">
+  <form (submit)="create()" [formGroup]="formCustomer">
+    <div class="row">
+    
       <mat-form-field appearance="outline" class="size">
         <mat-label>Nombre/s</mat-label>
-        <input matInput type="text" placeholder="Ingrese nombre">
+        <input matInput type="text" placeholder="Ingrese nombre"  formControlName="firstName" />
+    
       </mat-form-field>
+
       <mat-form-field appearance="outline" class="size">
         <mat-label>Apellido/s</mat-label>
-        <input matInput type="text" placeholder="Ingrese nombre">
+        <input matInput type="text" placeholder="Ingrese nombre" formControlName="lastName" required/>
       </mat-form-field>
-  </div>
+    </div>
 
-  <div class="row">
-      <mat-form-field hintLabel="Max 8 caracteres numericos" class="size" appearance="outline">
+    <div class="row">
+      <mat-form-field
+        hintLabel="Max 8 caracteres numericos"
+        class="size"
+        appearance="outline">
         <mat-label>Dni </mat-label>
-        <input matInput #input maxlength="8" minlength="8" placeholder>
-        <mat-hint align="end">{{input.value.length}}/10</mat-hint>
+        <input matInput #input   maxlength="8" minlength="8" placeholder   formControlName="dni"/>
+        <mat-hint align="end" required>{{input.value.length}}/8</mat-hint>
       </mat-form-field>
 
       <mat-form-field class="size" appearance="outline">
         <mat-label>Numero de Telefono</mat-label>
-        <input matInput #input maxlength="8" minlength="8"
-          placeholder="Ex. Nougat">
-        <mat-icon matSuffix>phone</mat-icon>
+        <input matInput #input required maxlength="12" minlength="12"
+          placeholder="Ex. Nougat" formControlName="phone" />
+         <mat-icon matSuffix>phone</mat-icon>
         <mat-hint>Incluir el codigo de area.</mat-hint>
       </mat-form-field>
-  </div>
+    </div>
 
-   <div class="row">
- <mat-form-field appearance="outline" >
-    <mat-label>Ingresa Mail</mat-label>
-    <input matInput placeholder=" marveland@hackaCode.com" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-   </div>
-   <div class="row">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Ingresa Mail</mat-label>
+        <input matInput placeholder=" marveland@hackaCode.com" required formControlName="email" />
+        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker"  formControlName="birthdate"/>
+        <mat-hint>dia/mes/año</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Fecha de Nacimiento</mat-label>
-      <input matInput [matDatepicker]="picker">
-      <mat-hint>dia/mes/año</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-   </div>
-
-
-
-
-</div>
-<div mat-dialog-actions>
-  <button mat-button color="primary">Guardar</button>
-  <button mat-button>Salir</button>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit"  [mat-dialog-close]="formCustomer.valid" [disabled]="formCustomer.invalid">Guardar</button>
+      <button mat-raised-button type="reset">Limpiar</button>
+    </div>
+  </form> 
 </div>
 
 <!-- <div class="container">
