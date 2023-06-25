@@ -13,15 +13,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { SharedModule } from '../shared/shared.module';
-
-
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { share } from 'rxjs';
 
 @NgModule({
-  declarations: [
-    CreateCustomerComponent,
-    ListCustomerComponent,
-    
-  ],
+  declarations: [CreateCustomerComponent, ListCustomerComponent],
   imports: [
     CommonModule,
     CustomerRoutingModule,
@@ -33,9 +29,8 @@ import { SharedModule } from '../shared/shared.module';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    SharedModule
-    
-
-  ]
+    SharedModule,
+    ReactiveFormsModule,
+  ],
 })
-export class CustomerModule { }
+export class CustomerModule {}

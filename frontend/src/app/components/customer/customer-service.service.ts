@@ -3,6 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CustomerModel } from './customer-model';
+import { CustomerRequestDto } from '../models/dto/customer-request-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,6 @@ import { CustomerModel } from './customer-model';
 export class CustomerServiceService implements OnInit {
   expURL = "http://localhost:8080/api/v1/customers/";
   constructor(private httpClient: HttpClient, private router: Router) {
-
   }
   ngOnInit(): void {
   }
@@ -19,7 +19,7 @@ export class CustomerServiceService implements OnInit {
     return this.httpClient.get<CustomerModel[]>(this.expURL + 'filters');
   }
 
-  public save(customer: CustomerModel): Observable<any> {
+  public save(customer: CustomerRequestDto): Observable<any> {
     return this.httpClient.post(this.expURL + `create`, customer);
   }
 
