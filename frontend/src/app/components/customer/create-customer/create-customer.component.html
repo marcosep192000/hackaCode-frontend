@@ -9,7 +9,6 @@
       <mat-form-field appearance="outline" class="size">
         <mat-label>Nombre/s</mat-label>
         <input matInput type="text" placeholder="Ingrese nombre"  formControlName="firstName" />
-    
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="size">
@@ -41,7 +40,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Ingresa Mail</mat-label>
         <input matInput placeholder=" marveland@hackaCode.com" required formControlName="email" />
-        <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        <mat-error *ngIf="email.invalid">{{ getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
     <div class="row">
@@ -57,7 +56,7 @@
     </div>
 
     <div mat-dialog-actions>
-      <button mat-raised-button color="primary" type="submit"  [mat-dialog-close]="formCustomer.valid" [disabled]="formCustomer.invalid">Guardar</button>
+      <button mat-raised-button color="primary" type="submit"  [mat-dialog-close]="formCustomer.valid" [disabled]="formCustomer.invalid">{{data ? 'Update':'save'}}  </button>
       <button mat-raised-button type="reset">Limpiar</button>
     </div>
   </form> 

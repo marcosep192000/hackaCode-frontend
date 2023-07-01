@@ -1,40 +1,30 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { CustomerModel } from '../customer-model';
-import { CustomerServiceService } from '../customer-service.service';
-import { TokenService } from '../../login/token.service';
-import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateCustomerComponent } from '../create-customer/create-customer.component';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+
+import { TokenService } from '../../login/token.service';
+import { Game } from '../../models/entity/game';
+import { GameService } from '../../service/game.service';
+import { AddUpdateGameComponent } from '../add-update-game/add-update-game.component';
+
 @Component({
-  selector: 'app-list-customer',
-  templateUrl: './list-customer.component.html',
-  styleUrls: ['./list-customer.component.css'],
+  selector: 'app-list-game',
+  templateUrl: './list-game.component.html',
+  styleUrls: ['./list-game.component.css']
 })
-export class ListCustomerComponent implements OnInit, AfterViewInit {
+export class ListGameComponent implements OnInit{
+  [x: string]: any;
   isLogued = false;
-  customer: CustomerModel[] = [];
-  displayedColumns: string[] = [
-    'lastName',
-    'firstName',
-    'dni',
-    'phone',
-    'email',
-    'birthdate',
-    'acciones',
-  ];
-  dataSource = new MatTableDataSource<CustomerModel>(this.customer);
+  game: Game[] = [];
+  displayedColumns: string[] = ["id","name","capacity","price","acciones"];
+  dataSource = new MatTableDataSource<Game>(this.game);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private customerService: CustomerServiceService,
+    private gameService: GameService,
     private dialog: MatDialog,
     private tokenService: TokenService,
     private router: Router,
@@ -42,7 +32,12 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
   ) {}
 
   openAddEditCustomer() {
-    const dialogRef = this.dialog.open(CreateCustomerComponent);
+    const dialogRef = this.dialog.open(AddUpdateGameComponent,{
+     maxWidth:'600px', 
+     width:'600px',
+    });
+    
+   
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {
@@ -53,7 +48,8 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
   }
 
   updateCustomer(data: any) {
-    this.dialog.open(CreateCustomerComponent, {
+    this.dialog.open(AddUpdateGameComponent, {
+      
       data,
     });
   }
@@ -73,7 +69,7 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
   }
 
   public all(): void {
-    this.customerService.all().subscribe((response) => {
+    this.gameService.all().subscribe((response) => {
       this.dataSource.data = response;
       console.log(response);
     });
@@ -81,7 +77,7 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
 
   onDelete(id: number) {
     console.log(id);
-    this.customerService.delete(id).subscribe({
+    this.gameService.delete(id).subscribe({
       next: (res) => {
         this._snackBar.open(
           'El Cliente ya se encuentra registrado.',
@@ -103,7 +99,7 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
   }
 
   onUpdate(data: any) {
-    const dialogRef = this.dialog.open(CreateCustomerComponent, {
+    const dialogRef = this.dialog.open(AddUpdateGameComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({

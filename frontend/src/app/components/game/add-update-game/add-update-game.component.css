@@ -4,7 +4,7 @@
 }
 
 .content {
-    padding-top:5px ; 
+    padding-top:1px ; 
 }
 
 .size{
@@ -13,6 +13,6 @@
 at-form-field{
     width: 100%;
 }
-strong{
-    padding-top: 30px;
+.timeSize{
+    width: 44%;
 }

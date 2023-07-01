@@ -46,14 +46,19 @@
           <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef> Acciones </th>
             <td mat-cell *matCellDef="let element">
-              <a class="pointer" style="color: blueviolet;">
+          
+              <!--btn editar -->
+              <a class="pointer" style="color: blueviolet;" (click)="onUpdate(element)">
                 <mat-icon matTooltip="Editar" class="icon">edit_note</mat-icon>
               </a>
+         
+              <!--btn buscar
               <a class="pointer" style="color: blueviolet;">
                 <mat-icon matTooltip="mas info" class="icon">manage_search</mat-icon>
-              </a>
-              <a class="pointer" style="color:red;">
-
+              </a> -->
+           
+              <!--btn eliminar -->
+              <a class="pointer" style="color:red;" (click)="onDelete(element.id)">
                 <mat-icon class="delete" matTooltip="Eliminar" class="icon">delete</mat-icon>
               </a>
             </td>
