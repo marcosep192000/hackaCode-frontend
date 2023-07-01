@@ -1,0 +1,85 @@
+<h1 mat-dialog-title>
+  Juego
+
+</h1>
+<div mat-dialog-content class="content">
+  <form (submit)="create()" [formGroup]="formGame" class="form-parent">
+    <div class="row">
+      <hr>
+      <mat-form-field appearance="outline" class="size">
+        <mat-label>Juego</mat-label>
+        <input matInput type="text" placeholder="Ingrese nombre" formControlName="name" />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field hintLabel="Max 8 caracteres numericos" class="size" appearance="outline">
+        <mat-label>Capacidad</mat-label>
+        <input matInput #input maxlength="2" minlength="1" placeholder="capacidad max 99 personas"
+          formControlName="capacity" />
+        <mat-hint align="end" required>{{input.value.length}}/99</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <hr>
+    <div class="row">
+        
+      <ng-container formArrayName="openHours">
+
+        <ng-container *ngFor="let formOpenHours of openHours.controls;let i=index">
+
+          <div class="openHours-form-row" [formGroup]="formOpenHours">
+            
+
+            <div class="row">
+    
+             <strong>Registra un nuevo Horario</strong> 
+
+              <mat-form-field appearance="outline" class="timeSize">
+                <mat-label>Horario de inicio</mat-label>
+                <input matInput type="time" placeholder="Ingrese nombre"  formControlName="startTime" required/>
+              </mat-form-field>
+        
+              <mat-form-field appearance="outline" class="timeSize">
+                <mat-label>Horario de fin</mat-label>
+                <input matInput type="time" placeholder="Ingrese nombre" formControlName="endTime" required/>
+              </mat-form-field>
+         
+            <a class="pointer" style="color:red;" (click)="deleteOpenHours('i')" class="timeSize">
+                  <mat-icon class="delete" matTooltip="Eliminar" class="icon">delete</mat-icon>
+             </a>
+            </div>
+
+         
+          </div>
+        </ng-container>
+
+      </ng-container>
+
+    </div>
+
+
+
+    <button mat-raised-button color="primary" type="button" class="btnHours" (click)="addOpenHours()">Horario</button>
+ 
+    
+
+    
+
+
+
+    <hr>
+    <div class="row">
+      <mat-form-field hintLabel="Max 8 caracteres numericos" class="size" appearance="outline">
+        <mat-label>Precio</mat-label>
+        <input matInput #input maxlength="5" minlength="1" placeholder="Valor del juego" class="size"
+          formControlName="price" />
+        <mat-hint align="end" required>{{ input.value.length|currency}}</mat-hint>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="formGame.valid"
+        [disabled]="formGame.invalid">{{data
+        ? 'Update':'save'}} </button>
+      <button mat-raised-button type="reset">Limpiar</button>
+    </div>
+  </form>

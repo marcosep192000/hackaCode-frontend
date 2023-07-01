@@ -16,7 +16,7 @@ export class CustomerServiceService implements OnInit {
   }
 
   public all(): Observable<CustomerModel[]> {
-    return this.httpClient.get<CustomerModel[]>(this.expURL + 'filters');
+    return this.httpClient.get<CustomerModel[]>(this.expURL + 'getAll');
   }
 
   public save(customer: CustomerRequestDto): Observable<any> {

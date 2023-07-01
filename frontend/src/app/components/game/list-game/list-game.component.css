@@ -1,0 +1,30 @@
+table {
+    width: 100%; 
+  }
+  .delete{
+    color: RED;
+  }
+  .pointer:hover{
+  cursor: pointer;
+  }
+  .pointer{
+    height: 20px;
+    width: auto;
+  }
+  .mat-mdc-form-field {
+    font-size: 16px;
+    width: 81%;
+    height: 80px;
+  }
+  
+  .btnCreateCustomer{
+  width: 19%;
+  margin-left: 4px;
+  height: 4px;
+  font-size: 16px;
+  height:58px;
+  }
+  .icon{
+    width: 30px;
+    height: auto;
+  }
