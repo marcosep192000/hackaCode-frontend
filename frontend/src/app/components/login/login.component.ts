@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   loginUser!: LoginUser;
   nameUser!: string;
   password!: string;
-  roles: string[] = [];
+  roles!: string;
   errMsj!: string;
 
 
@@ -49,17 +49,17 @@ export class LoginComponent implements OnInit {
     const password = this.form.value.password; 
 
     this.loginUser = new LoginUser(nameUser, password);
-   //console.log(this.loginUser)
+ 
     this.authService.login(this.loginUser).subscribe(
       {
         next: data => {
           this.isLoged = true;
-          this, this.isLguedFaild = false;
+          this.isLguedFaild = false;
           this.tokenService.setToken(data.token);
-          this.tokenService.setUserName(data.username);
-          this.tokenService.setAuthorities(data.authorities);
+          this.tokenService.setRole(data.role);
+          this.tokenService.loggedIn.next(true);
           this.router.navigate(['dashboard']);
-         // console.log(this.loginUser)
+     
         },
         error: err => {
           this.isLoged = false;

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,8 +20,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [],
   imports: [
- 
-  
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -40,10 +38,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
-   
+    MatFormFieldModule,
+
   ], exports: [
-  
-   
     LayoutModule,
     MatToolbarModule,
     MatInputModule,
@@ -61,7 +58,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   MatPaginatorModule,
   MatTooltipModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatFormFieldModule,
   ],
 })
 export class SharedModule { }

@@ -13,6 +13,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateCustomerComponent } from '../create-customer/create-customer.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginUser } from '../../login/login-user';
+import { AuthService } from '../../login/auth.service';
+import { Token } from '@angular/compiler';
 @Component({
   selector: 'app-list-customer',
   templateUrl: './list-customer.component.html',
@@ -38,7 +41,8 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
     private dialog: MatDialog,
     private tokenService: TokenService,
     private router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private AuthService: AuthService
   ) {}
 
   openAddEditCustomer() {

@@ -1,5 +1,4 @@
 
-
 import { AfterViewInit, Component,Inject,OnInit, ViewChild, inject } from '@angular/core';
 import {
   FormBuilder,
@@ -15,8 +14,9 @@ import {
 import { CustomerServiceService } from '../customer-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerModel } from '../customer-model';
-
-
+import { TokenService } from '../../login/token.service';
+import { Token } from '@angular/compiler';
+import { toArray } from 'rxjs';
 @Component({
   selector: 'app-create-customer',
   templateUrl: './create-customer.component.html',
@@ -26,16 +26,15 @@ export class CreateCustomerComponent implements OnInit {
   formCustomer!: FormGroup;
   customer: CustomerModel[]=[]
   email = new FormControl('', [Validators.required, Validators.email]);
-
   constructor(
     private _snackBar: MatSnackBar,
     private customerService: CustomerServiceService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateCustomerComponent>,
+    private token:TokenService,
      
    @Inject(MAT_DIALOG_DATA) public data : any,
     ) {
-
     this.formCustomer = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(4)]],
       lastName: ['', [Validators.required, Validators.minLength(4)]],
@@ -47,10 +46,10 @@ export class CreateCustomerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.formCustomer.patchValue(this.data); 
+   
+    this.formCustomer.patchValue(this.data);
+     console.log(this.token.getAuthorities.name +"sfsdfdsfdfsfdfdfffsfsdfsdfsd")
   }
-
   //validaciones de formulario
 
   getErrorMessage() {

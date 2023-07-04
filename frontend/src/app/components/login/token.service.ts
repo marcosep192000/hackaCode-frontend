@@ -1,23 +1,76 @@
 import { Injectable } from '@angular/core';
+import { JwtDto } from './jwt-dto';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient } from '@angular/common/http';
 
+const helper = new JwtHelperService(); 
 
 const TOKEN_KEY = "AuthToken";
 const USERNAME_KEY = "AuthUsername";
 const AUTHORITIES_KEY = "AuthAuthorities";
+const ROLE_KEY="role"; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
-  roles: Array<string> = [];
-  constructor() { }
+
+   loggedIn  = new BehaviorSubject<Boolean>(false);
+
+
+  roles!: string;
+  constructor(private httpClient:HttpClient ) {
+    this.checkToken();
+   }
+
+get isLogged(): Observable<Boolean>{
+  return this.loggedIn.asObservable(); 
+}
+
 
   public setToken(token: string): void {
-    window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    localStorage.removeItem(TOKEN_KEY)
+   localStorage.setItem(TOKEN_KEY,token)
   }
   public getToken(): string {
-    return sessionStorage.getItem(TOKEN_KEY)!;
+    return localStorage.getItem(TOKEN_KEY)!;
+  }
+
+
+  public setRole(role: string): void {
+    localStorage.removeItem(AUTHORITIES_KEY);
+    localStorage.setItem(AUTHORITIES_KEY, role);
+  }
+  public getRole(): string {
+    return sessionStorage.getItem(AUTHORITIES_KEY)!;
+  }
+
+  public logOut():void{
+    localStorage.removeItem(TOKEN_KEY)
+    this.loggedIn.next(false);
+    localStorage.removeItem(AUTHORITIES_KEY)
+  }
+
+  private checkToken():void {
+    const userToken = localStorage.getItem('token');
+    const isExpired = helper.isTokenExpired(userToken); 
+    console.log('isExpired=>' ,isExpired);
+  if (isExpired){
+    this.logOut()
+  }else {
+    this.loggedIn.next(true)
+  }
+
+
+  }
+
+  public getNameuser() :Boolean{
+  if (sessionStorage.getItem(USERNAME_KEY)!){
+
+    return true; 
+  }
+    return false  ;
   }
 
   public setUserName(username: string): void {
@@ -28,26 +81,22 @@ export class TokenService {
   public getUserName(): string {
     return sessionStorage.getItem(USERNAME_KEY)!;
   }
-  public setAuthorities(authorities: string[]): void {
+
+  public setAuthorities(authorities: string): void {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
 
   }
 
-  public getAuthorities():string[] {
-    this.roles = [];
+  public getAuthorities():string{
+    this.roles;
     if (sessionStorage.getItem(AUTHORITIES_KEY)){
-
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach((authority: any) => {
-      this.roles.push(authority.authority);
-    });
-    
+      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!);
     }
     return this.roles;
-   
   }
 
-  public logOut():void{
-    window.sessionStorage.clear();
-  }
+
+  
+
 }

@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { GameCreate } from '../../models/entity/game';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CreateCustomerComponent } from '../../customer/create-customer/create-customer.component';
@@ -69,7 +68,7 @@ export class AddUpdateGameComponent {
         },
         error: (err) => {
           this._snackBar.open(
-            'El Cliente no se puede actualizar.',
+            'El Juego no se puede actualizar.',
             'cod:91218',
             { duration: 6000, verticalPosition: 'bottom' }
           );

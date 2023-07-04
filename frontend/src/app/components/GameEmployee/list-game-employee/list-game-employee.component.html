@@ -1,1 +1,97 @@
-<p>list-game-employee works!</p>
+<div class="grid-container">
+    <mat-grid-list cols="2" rowHeight="350px">
+      <mat-card class="dashboard-card">
+         <mat-card-title> Encagado de Juegos </mat-card-title>
+        <mat-card-header>
+          <!-- contenido de las cards aca listado de clientes -->
+          <mat-form-field> <!--buscar cliente-->
+            <mat-label>Filtro</mat-label>
+            <input matInput (keyup)="applyFilter($event)"  placeholder="Realiza tu busqueda" #input>
+          </mat-form-field> <!--buscar cliente-->
+           <!-- boton registrar cliente showDialog-->  
+              <button mat-raised-button color="primary"  class="btnCreateCustomer"(click)="openAddEditGameEmployee();"> <mat-icon class="icon">person_add</mat-icon>Encargado de juegos</button> 
+          </mat-card-header>
+              <mat-card-content class="dashboard-card-content">  
+     
+  <!-- boton tabla clientes-->
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      
+       <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef> Apellido </th>
+              <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef> nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+
+           
+            <!-- Name Column -->
+            <ng-container matColumnDef="workingHours">
+                <th mat-header-cell *matHeaderCellDef> Horario Laboral </th>
+                <td mat-cell *matCellDef="let element"> {{element.workingHours}} </td>
+              </ng-container>
+            <!-- Weight Column -->
+            <ng-container matColumnDef="dni">
+              <th mat-header-cell *matHeaderCellDef> Dni </th>
+              <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="phone">
+              <th mat-header-cell *matHeaderCellDef> Telefono </th>
+              <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+            </ng-container>
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef> Email </th>
+              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="birthdate">
+              <th mat-header-cell *matHeaderCellDef>Cumpleaños</th>
+              <td mat-cell *matCellDef="let element"> {{element.birthdate}} </td>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell *matHeaderCellDef> Acciones </th>
+              <td mat-cell *matCellDef="let element">
+        
+                <a class="pointer" style="color:red;">
+                    <mat-icon class="delete" matTooltip="Agregar Juego" class="icon">add_task</mat-icon>
+                  </a>
+
+           
+
+
+                <!--btn editar -->
+                <a class="pointer" style="color: blueviolet;" (click)="onUpdate(element)">
+                  <mat-icon matTooltip="Editar" class="icon">edit_note</mat-icon>
+                </a>
+           
+                <!--btn buscar
+                <a class="pointer" style="color: blueviolet;">
+                  <mat-icon matTooltip="mas info" class="icon">manage_search</mat-icon>
+                </a> -->
+             
+                <!--btn eliminar -->
+                <a class="pointer" style="color:red;" (click)="onDelete(element.id)">
+                  <mat-icon class="delete" matTooltip="Eliminar" class="icon">delete</mat-icon>
+                </a>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+  <!-- boton tabla clientes-->
+  
+  <!-- paginador-->
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+          </mat-paginator>
+  <!-- paginador-->
+  
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-list>
+  </div>
+
+
