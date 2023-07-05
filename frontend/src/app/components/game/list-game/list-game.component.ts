@@ -19,7 +19,7 @@ export class ListGameComponent implements OnInit{
   [x: string]: any;
   isLogued = false;
   game: Game[] = [];
-  displayedColumns: string[] = ["id","name","capacity","price","acciones"];
+  displayedColumns: string[] = ["id","name","capacity","price","endTime","startTime","acciones"];
   dataSource = new MatTableDataSource<Game>(this.game);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -80,7 +80,7 @@ export class ListGameComponent implements OnInit{
     this.gameService.delete(id).subscribe({
       next: (res) => {
         this._snackBar.open(
-          'El Cliente ya se encuentra registrado.',
+          'El jugo se a eliminado.',
           'cod:91218',
           { duration: 6000, verticalPosition: 'bottom' }
         );

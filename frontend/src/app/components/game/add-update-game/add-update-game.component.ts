@@ -12,19 +12,16 @@ import { GameService } from '../../service/game.service';
 })
 export class AddUpdateGameComponent {
   formGame!: FormGroup;
-
   constructor(private _snackBar: MatSnackBar,private gameService: GameService, private fb: FormBuilder, private dialogRef: MatDialogRef<CreateCustomerComponent>, @Inject(MAT_DIALOG_DATA) public data: any) 
- 
- 
   {
       this.formGame = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
       capacity: [0, [Validators.required]],
       price: [0, Validators.required],
-      openHours: this.fb.array([]),
+      startTime: [0,Validators.required],
+      endTime:[0,Validators.required]
     });
   }
-
 
   ngOnInit(): void {
     this.formGame.patchValue(this.data);
@@ -35,20 +32,20 @@ export class AddUpdateGameComponent {
   //validaciones de formulario
 
 
-  get openHours(){
-    return this.formGame.controls["openHours"] as FormArray;
-  }
-  addOpenHours() {
-    const formOpenHours = this.fb.group({
-      startTime: [0,Validators.required],
-      endTime:[0,Validators.required]
-    });
-    this.openHours.push(formOpenHours)
-  }
- deleteOpenHours(i:any )
- {
-      this.openHours.removeAt(i);
- }
+//   get openHours(){
+//     return this.formGame.controls["openHours"] as FormArray;
+//   }
+//   addOpenHours() {
+//     const formOpenHours = this.fb.group({
+//       startTime: [0,Validators.required],
+//       endTime:[0,Validators.required]
+//     });
+//     this.openHours.push(formOpenHours)
+//   }
+//  deleteOpenHours(i:any )
+//  {
+//       this.openHours.removeAt(i);
+//  }
 
   
 

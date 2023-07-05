@@ -6,14 +6,18 @@
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="(isHandset$ | async) === false">
-    <mat-toolbar><a [routerLink]="['/dashboard']">Panel de Control</a></mat-toolbar>
+    <mat-toolbar>Panel de Control</mat-toolbar>
     <mat-nav-list>
+<!-- *ngIf="role==('EMOPLOYEE')"-->
+<hr>
 
-      <a mat-list-item [routerLink]="['customer/list']">Clientes</a>
-      <a mat-list-item [routerLink]="['gameEmployee/list']">Empleado de juegos</a>
-      <a mat-list-item [routerLink]="['game/list']">Juegos</a>
-      <a mat-list-item [routerLink]="['customer/list']">Administrador</a>
-      <a mat-list-item (click)="onLogout()" [routerLink]="['/login']">Salir</a>
+      <a  mat-list-item [routerLink]="['customer/list']">Clientes</a>
+      <a  mat-list-item [routerLink]="['gameEmployee/list']">Empleado de juegos</a>
+      <a  mat-list-item [routerLink]="['game/list']">Juegos</a>
+      <a  mat-list-item [routerLink]="['customer/list']">Administrador</a>
+      <br>
+      <hr>
+      <a  mat-list-item (click)="onLogout()" [routerLink]="['/login']">Salir</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

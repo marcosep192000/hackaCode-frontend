@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
   isLogued = false;
-
+  role = ""
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -25,15 +25,18 @@ export class NavigationComponent implements OnInit {
     private tokenService: TokenService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
-    if (this.tokenService.getToken()) {
-      console.log(this.tokenService.getAuthorities());
+    if (this.tokenService.getToken() ) {
       this.isLogued = true;
-    } else {
+      this.role = this.tokenService.getRole()
+    }
+     else {
       this.isLogued = false;
       this.router.navigate(['']);
     }
   }
+
   onLogout(): void {
     this.tokenService.logOut();
   }

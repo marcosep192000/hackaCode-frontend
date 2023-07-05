@@ -81,7 +81,7 @@ export class ListGameEmployeeComponent {
       console.log(response);
     });
 
-    console.log(this.tokenService.getAuthorities()+"llllllll")
+    console.log(this.tokenService.getRole() +"llllllll")
   }
 
   onDelete(id: number) {

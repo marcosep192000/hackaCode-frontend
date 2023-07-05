@@ -68,6 +68,8 @@ export class ListCustomerComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.all();
+    console.log(this.tokenService.getRole())
+    console.log(this.tokenService.getToken())
     if (this.tokenService.getToken()) {
       this.isLogued = true;
     } else {

@@ -36,14 +36,12 @@ get isLogged(): Observable<Boolean>{
   public getToken(): string {
     return localStorage.getItem(TOKEN_KEY)!;
   }
-
-
   public setRole(role: string): void {
     localStorage.removeItem(AUTHORITIES_KEY);
     localStorage.setItem(AUTHORITIES_KEY, role);
   }
   public getRole(): string {
-    return sessionStorage.getItem(AUTHORITIES_KEY)!;
+    return localStorage.getItem(AUTHORITIES_KEY)!;
   }
 
   public logOut():void{
@@ -66,7 +64,7 @@ get isLogged(): Observable<Boolean>{
   }
 
   public getNameuser() :Boolean{
-  if (sessionStorage.getItem(USERNAME_KEY)!){
+  if (localStorage.getItem(USERNAME_KEY)!){
 
     return true; 
   }
@@ -74,24 +72,24 @@ get isLogged(): Observable<Boolean>{
   }
 
   public setUserName(username: string): void {
-    window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, username);
+   localStorage.removeItem(USERNAME_KEY);
+    localStorage.setItem(USERNAME_KEY, username);
   }
 
   public getUserName(): string {
-    return sessionStorage.getItem(USERNAME_KEY)!;
+    return localStorage.getItem(USERNAME_KEY)!;
   }
 
   public setAuthorities(authorities: string): void {
-    window.sessionStorage.removeItem(AUTHORITIES_KEY);
-    window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
+    localStorage.removeItem(AUTHORITIES_KEY);
+    localStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
 
   }
 
   public getAuthorities():string{
     this.roles;
     if (sessionStorage.getItem(AUTHORITIES_KEY)){
-      JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!);
+      JSON.parse(localStorage.getItem(AUTHORITIES_KEY)!);
     }
     return this.roles;
   }

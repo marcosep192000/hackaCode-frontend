@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     if (this.tokenService.getToken()) {
       this.isLoged = true;
       this.isLguedFaild = false;
-      this.roles = this.tokenService.getAuthorities();
+  
 
     }
   }
