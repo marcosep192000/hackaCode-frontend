@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
      
         },
         error: err => {
+          
           this.isLoged = false;
           this.isLguedFaild = true;
           err.console.error();

@@ -7,6 +7,7 @@ import { AuthGuard } from './components/guards/auth.guard';
 import { TokenService } from './components/login/token.service';
 import { Token } from '@angular/compiler';
 import { HasRoleGuard } from './components/guards/guards/has-role.guard';
+import { LandingComponent } from './components/landing/landing.component';
 
 
           
@@ -17,7 +18,7 @@ const routes: Routes = [
  
  
    
-
+  { path: '', component:LandingComponent },
  
   { path: 'login', component:LoginComponent ,canActivate:[NoAuthGuard]},
 

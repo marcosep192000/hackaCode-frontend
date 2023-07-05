@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './components/shared/shared.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import InterceptorService from './components/interceptor.service';
+import { LandingComponent } from './components/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import InterceptorService from './components/interceptor.service';
     NavigationComponent,
     DashboardComponent,
     LoginComponent,
+    LandingComponent,
   
   ],
   imports: [
