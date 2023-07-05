@@ -1,5 +1,5 @@
 # hackaCode-frontend
-<img align="center" src="file:///C:/Users/carlo/OneDrive/Im%C3%A1genes/Capturas%20de%20pantalla/Captura%20de%20pantalla%202023-07-05%20150414.png">
+[![Captura-de-pantalla-2023-07-05-150414.png](https://i.postimg.cc/qRGPz6Ws/Captura-de-pantalla-2023-07-05-150414.png)](https://postimg.cc/DJ8jN0v0)
 
 
 
