@@ -15,12 +15,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { GameRoutingModule } from '../game/game-routing.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddGameComponent } from './add-game/add-game.component';
 
 
 @NgModule({
   declarations: [
     AddUpdateGameEmployeeComponent,
-    ListGameEmployeeComponent
+    ListGameEmployeeComponent,
+    AddGameComponent
   ],
   imports: [
     CommonModule,

@@ -18,7 +18,7 @@ const routes: Routes = [
 
   { path: 'dashboard',component: NavigationComponent,children: [{path: 'game',   canActivate:[HasRoleGuard], canLoad:[HasRoleGuard],data:{role:['ADMIN'],},loadChildren: () => import('./components/game/game.module').then(w => w.GameModule)}],},
 
- { path: 'dashboard',component: NavigationComponent,children: [{path: 'gameEmployee', canActivate:[HasRoleGuard], canLoad:[HasRoleGuard], data:{role:['EMPLOYEE']}, loadChildren: () => import('./components/GameEmployee/game-employee.module').then(j => j.GameEmployeeModule)}],}];
+ { path: 'dashboard',component: NavigationComponent,children: [{path: 'gameEmployee', canActivate:[HasRoleGuard], canLoad:[HasRoleGuard], data:{role:['ADMIN']}, loadChildren: () => import('./components/GameEmployee/game-employee.module').then(j => j.GameEmployeeModule)}],}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

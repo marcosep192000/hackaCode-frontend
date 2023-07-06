@@ -40,13 +40,23 @@
            <mat-error *ngIf="email.invalid">{{ getErrorMessage()}}</mat-error>
          </mat-form-field>
        </div>
-     
-       <mat-form-field appearance="outline" class="size">
-        <mat-label>Horario laboral</mat-label>
-        <input matInput type="text" placeholder="Ingrese nombre"  formControlName="workingHours" />
-      </mat-form-field>
+ 
+  
+       <div class="row">
+        <select class="form-control" id="allocation-algorithm" >
+                <option *ngFor="let item of gameList" value="{{item.id}}">{{item.name}}</option>  
+              </select>
+           </div>
 
    
+
+
+   <div class="row">
+<select class="form-control" id="allocation-algorithm"  formControlName="workingHours">
+        <option value="9:00 A 12:00 HS"> 9:00 A 12:00 HS</option>
+        <option value="9:00 A 12:00 HS"> 9:00 A 12:00 HS</option>  
+      </select>
+   </div>
 
        <div class="row">
         <mat-form-field

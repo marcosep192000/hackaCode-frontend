@@ -10,7 +10,7 @@
 .size{
     width: 100%;
 }
-at-form-field{
+.at-form-field{
     width: 100%;
 }
 strong{
@@ -22,3 +22,9 @@ strong{
     flex-direction: column;
     align-items: flex-start;
   }
+.form-control{
+    width: 95%;
+    height: 45px ;
+    
+    margin-bottom: 25px;
+}

@@ -11,10 +11,10 @@
 <!-- *ngIf="role==('EMOPLOYEE')"-->
 <hr>
 
-      <a  mat-list-item [routerLink]="['customer/list']">Clientes</a>
-      <a  mat-list-item [routerLink]="['gameEmployee/list']">Empleado de juegos</a>
-      <a  mat-list-item [routerLink]="['game/list']">Juegos</a>
-      <a  mat-list-item [routerLink]="['customer/list']">Administrador</a>
+      <a *ngIf="role==('ADMIN')" mat-list-item [routerLink]="['customer/list']">Clientes</a>
+      <a  *ngIf="role==('ADMIN')" mat-list-item [routerLink]="['gameEmployee/list']">Empleado de juegos</a>
+      <a *ngIf="role==('ADMIN')" mat-list-item [routerLink]="['game/list']">Juegos</a>
+      <a *ngIf="role==('ADMIN')" mat-list-item [routerLink]="['customer/list']">Administrador</a>
       <br>
       <hr>
       <a  mat-list-item (click)="onLogout()" [routerLink]="['/login']">Salir</a>

@@ -11,6 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ThemePalette } from '@angular/material/core';
 import { LoginUser } from '../../login/login-user';
+import { GameService } from '../../service/game.service';
+import { Game } from '../../models/entity/game';
 
 @Component({
   selector: 'app-add-update-game-employee',
@@ -22,14 +24,15 @@ export class AddUpdateGameEmployeeComponent {
   formGameEmployeee!: FormGroup;
   GameEmployee: GameEmployee[] = [];
   email = new FormControl('', [Validators.required, Validators.email]);
+  gameList!: Game[];
+
 
   constructor(
     private _snackBar: MatSnackBar,
     private gameEmployeeService: GameEmployeeService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<AddUpdateGameEmployeeComponent>,
-    private loginUser: LoginUser,
-
+    private game: GameService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
       this.formGameEmployeee = this.fb.group({
@@ -40,16 +43,26 @@ export class AddUpdateGameEmployeeComponent {
       role : ['EMPLOYEE', [Validators.required]],
       dni: [0, Validators.required],
       email: ['', Validators.email],
+      game: [],
       workingHours: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.formGameEmployeee.patchValue(this.data);
-   
+  this.formGameEmployeee.patchValue(this.data);
+  this.all();
+  }
+  public all(): void {
+    this.game.all().subscribe((response) => {
+     this.gameList = response;
+    });
+
   }
 
-  //validaciones de formulario
+ 
+  
+
+
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -58,10 +71,10 @@ export class AddUpdateGameEmployeeComponent {
     return this.email.hasError('email') ? 'No es un Email Valido' : '';
   }
 
-  create(): void {
-    if (this.formGameEmployeee.valid) {}
 
-      console.log(this.formGameEmployeee)
+
+
+  create(): void {
       if (this.data) {
         this.gameEmployeeService.update(this.data.id, this.formGameEmployeee.value)
           .subscribe({

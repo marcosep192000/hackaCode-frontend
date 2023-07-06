@@ -8,15 +8,9 @@ import { LoginUser } from './login-user';
 })
 export class AuthService {
 
-  authURL ="http://localhost:8080/api/v1/auth/"
- 
+ authURL ="http://localhost:8080/api/v1/auth/"
+ // authURL ="149.50.128.108:5002/api/v1/auth/";
   constructor(private httpClient : HttpClient) { }
-
-
-//public nuevo(nuevoUsuario : NuevoUsuario): Observable<any>{
-  //return this.httpClient.post<any>(this.authURL +'nuevo',nuevoUsuario);
-
-//}
 
   public login(loginUsuario: LoginUser): Observable<JwtDto>{
     console.log(JwtDto)

@@ -7,7 +7,9 @@ export interface GameEmployee {
     lastName: string,
     role:string,
     dni: number,
+    games:number,
     email: string,
+    
     workingHours:string,
     
 }
