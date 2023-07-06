@@ -1,6 +1,7 @@
 .row{
     display: flex; 
     gap: 10px;
+    padding-top: 30px;
 }
 
 .content {
@@ -25,6 +26,7 @@ strong{
 .form-control{
     width: 95%;
     height: 45px ;
-    
     margin-bottom: 25px;
+    margin: 30px;
+    
 }

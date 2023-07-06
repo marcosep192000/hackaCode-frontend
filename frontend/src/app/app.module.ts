@@ -20,6 +20,7 @@ import { LandingComponent } from './components/landing/landing.component';
     DashboardComponent,
     LoginComponent,
     LandingComponent,
+    
   
   ],
   imports: [

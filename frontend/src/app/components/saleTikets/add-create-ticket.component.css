@@ -1,0 +1,26 @@
+
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+  .cards
+  {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content:center;
+    width: 350px;
+  }
+  .ancho{
+    width: 100%;
+  }
+  .btn{
+    height: 50px;
+  }
+
+  .list{
+    margin-bottom:30px;
+    margin: 30px;
+  }

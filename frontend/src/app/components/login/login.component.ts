@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
   isLoged = false;
   isLguedFaild = false;
   loginUser!: LoginUser;
-  nameUser!: string;
+  username!: string;
+  id?:number;
   password!: string;
   roles!: string;
   errMsj!: string;
@@ -56,6 +57,7 @@ export class LoginComponent implements OnInit {
           this.isLoged = true;
           this.isLguedFaild = false;
           this.tokenService.setToken(data.token);
+          this.tokenService.setUserName(data.username)
           this.tokenService.setRole(data.role);
           this.tokenService.loggedIn.next(true);
           this.router.navigate(['dashboard']);

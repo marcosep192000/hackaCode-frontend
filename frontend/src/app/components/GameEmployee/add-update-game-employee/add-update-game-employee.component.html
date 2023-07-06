@@ -28,7 +28,7 @@
          </mat-form-field>
        </div>
 
-       <mat-form-field appearance="outline" class="size">
+       <mat-form-field appearance="outline" *ngIf="mostrarInput" class="size">
         <mat-label>Rol</mat-label>
         <input matInput type="text"  placeholder="Ingrese nombre"  formControlName="role" />
       </mat-form-field>

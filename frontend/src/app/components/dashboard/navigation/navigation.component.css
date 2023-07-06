@@ -9,9 +9,17 @@
 .sidenav .mat-toolbar {
   background: inherit;
 }
-
+strong{
+  padding-left: 15px;
+}
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+h2{
+  padding-left: 15px;
+}
+h4{
+  padding-left: 15px;
 }

@@ -1,0 +1,48 @@
+
+
+
+
+
+<mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>
+        
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+     <br>
+
+        <div><h2>Venta de Tickets</h2></div>
+<br>
+      <mat-card  class = "cards">
+<form [formGroup]="formulario" (ngSubmit)="guardar()">
+<div class="row">
+    <select class="list"  [(ngModel)]="idCustomer" class="form-control" id="allocation-algorithm" >
+            <option *ngFor="let item of customerList"   value="{{item.id}}">{{item.firstName}}-{{item.lastName}}</option>  
+          </select>
+       </div>
+<br>
+       <div class="row">
+        <select    class="list" class="form-control" id="allocation-algorithm" >
+                <option *ngFor="let item of gameList" value="{{item.id}}">{{item.name}}</option>  
+        </select>
+           </div>
+    <div>
+{{idCustomer}}
+     
+
+
+    
+    <br>
+        <label for="dateTime">Fecha y hora:</label>
+        <input type="datetime-local" id="dateTime" formControlName="dateTime">
+    </div>
+ 
+
+    <button type="submit" [disabled]="formulario.invalid">Guardar</button>
+</form>
+
+</mat-card>
+
+    </mat-card-content>
+  </mat-card>

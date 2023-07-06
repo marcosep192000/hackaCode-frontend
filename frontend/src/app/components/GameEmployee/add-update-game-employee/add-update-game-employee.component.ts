@@ -13,6 +13,7 @@ import { ThemePalette } from '@angular/material/core';
 import { LoginUser } from '../../login/login-user';
 import { GameService } from '../../service/game.service';
 import { Game } from '../../models/entity/game';
+import { CustomerModel } from '../../customer/customer-model';
 
 @Component({
   selector: 'app-add-update-game-employee',
@@ -27,6 +28,7 @@ export class AddUpdateGameEmployeeComponent {
   gameList!: Game[];
 
 
+  mostrarInput = false; 
   constructor(
     private _snackBar: MatSnackBar,
     private gameEmployeeService: GameEmployeeService,
@@ -51,6 +53,7 @@ export class AddUpdateGameEmployeeComponent {
   ngOnInit(): void {
   this.formGameEmployeee.patchValue(this.data);
   this.all();
+
   }
   public all(): void {
     this.game.all().subscribe((response) => {
@@ -58,9 +61,6 @@ export class AddUpdateGameEmployeeComponent {
     });
 
   }
-
- 
-  
 
 
 
@@ -70,9 +70,6 @@ export class AddUpdateGameEmployeeComponent {
     }
     return this.email.hasError('email') ? 'No es un Email Valido' : '';
   }
-
-
-
 
   create(): void {
       if (this.data) {
